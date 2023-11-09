@@ -79,9 +79,9 @@ exports.delete = (req, res) => {
 exports.findAll = (req, res) => {
     const { page, size, search } = req.query;
 
-    console.log("search:"+search);
-    console.log("page:"+page);
-    console.log("size:"+size);
+    console.log("search:" + search);
+    console.log("page:" + page);
+    console.log("size:" + size);
 
     console.log(search);
     var condition = search
@@ -98,7 +98,7 @@ exports.findAll = (req, res) => {
         var geoLocFlag = false;
 
         console.log(ip1);
-        if(ip1 !== undefined && ip1 != "::1" && !ip1.includes("::ffff:") && !ip1.includes("127.0.0.1")){
+        if (ip1 !== undefined && ip1 != "::1" && !ip1.includes("::ffff:") && !ip1.includes("127.0.0.1")) {
             const geo = ipLoc(ip1);
             console.log(ip1);
             console.log(geo);
@@ -111,20 +111,19 @@ exports.findAll = (req, res) => {
             geoLocFlag = true;
             console.log(condition);
             console.log(geoLocFlag);
-        }       
+        }
     }
     //END:TODO:GeoLogic Geo Location Logic implemented here
 
     var options;
-    console.log("page:"+page);
-    console.log(page=="all");
-    if(page=="all" || geoLocFlag){
+    console.log("page:" + page);
+    console.log(page == "all");
+    if (page == "all" || geoLocFlag) {
         options = {
             pagination: false,
-        };      
+        };
     }
-    else
-    {
+    else {
         //const { limit, offset } = getPagination(page, size);
         options = getPagination(page, size);
     }
